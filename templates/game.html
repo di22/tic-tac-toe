@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tic-tac-toe</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid black;
+            width: 10vh;
+            height: 10vh;
+            font-size: 1em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+{% if winner == True %}
+<h1> You Won</h1>
+{% elif loser == True %}
+    <h1> You lose</h1>
+{% endif %}
+<table>
+    {% for i in range(3) %}
+    <tr>
+    {% for j in range(3) %}
+        <td>
+        {% if game[i][j] %}
+            {{ game[i][j] }}
+        {% elif (not game[i][j]) and (winner == False) %}
+            <a href="{{ url_for('play',row=i, col=j) }}">play here</a>
+        {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+       {% endfor %}
+</table>
+
+</body>
+</html>
